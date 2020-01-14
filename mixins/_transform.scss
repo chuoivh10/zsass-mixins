@@ -1,0 +1,158 @@
+///
+/// Generates cross-browser-compatible `transform` for a given element.
+///
+/// @link https://www.w3schools.com/cssref/css3_pr_transform.asp spec
+///
+/// @param {String} $values
+///
+/// @output
+/// ```css
+///  -webkit-transform: <values>;
+///     -moz-transform: <values>;
+///      -ms-transform: <values>;
+///       -o-transform: <values>;
+///          transform: <values>;
+/// ```
+///
+/// @example
+///  .selector {
+///    @include z-transform(rotate(1deg));
+///  }
+///
+@mixin z-transform($transforms) {
+    -moz-transform: $transforms;
+    -o-transform: $transforms;
+    -ms-transform: $transforms;
+    -webkit-transform: $transforms;
+    transform: $transforms;
+}
+
+///
+/// Generates cross-browser-compatible `transform:rotate` for a given element.
+///
+/// @link https://www.w3schools.com/cssref/css3_pr_transform.asp spec
+///
+/// @param {Number} $deg
+///
+/// @output
+/// ```css
+///  -webkit-transform: rotate(<values>deg);
+///     -moz-transform: rotate(<values>deg);
+///      -ms-transform: rotate(<values>deg);
+///       -o-transform: rotate(<values>deg);
+///          transform: rotate(<values>deg);
+/// ```
+///
+/// @example
+///  .selector {
+///    @include z-rotate(45);
+///  }
+///
+@mixin z-rotate ($deg) {
+    @include z-transform(rotate(#{$deg}deg));
+}
+
+///
+/// Generates cross-browser-compatible `transform:scale` for a given element.
+///
+/// @link https://www.w3schools.com/cssref/css3_pr_transform.asp spec
+///
+/// @param {Number} $deg
+///
+/// @output
+/// ```css
+///  -webkit-transform: scale(<values>);
+///     -moz-transform: scale(<values>);
+///      -ms-transform: scale(<values>);
+///       -o-transform: scale(<values>);
+///          transform: scale(<values>);
+/// ```
+///
+/// @example
+///  .selector {
+///    @include z-scale(1.1);
+///  }
+///
+@mixin z-scale($scale) {
+    @include z-transform(scale($scale));
+}
+
+///
+/// Generates cross-browser-compatible `transform:translate` for a given element.
+///
+/// @link https://www.w3schools.com/cssref/css3_pr_transform.asp spec
+///
+/// @param {Number} $deg
+///
+/// @output
+/// ```css
+///  -webkit-transform: translate(<values>);
+///     -moz-transform: translate(<values>);
+///      -ms-transform: translate(<values>);
+///       -o-transform: translate(<values>);
+///          transform: translate(<values>);
+/// ```
+///
+/// @example
+///  .selector {
+///    @include z-translate(1.1);
+///  }
+///
+@mixin z-translate ($x, $y) {
+    @include z-transform(translate($x, $y));
+}
+
+///
+/// Generates cross-browser-compatible `transform:skew` for a given element.
+///
+/// @link https://www.w3schools.com/cssref/css3_pr_transform.asp spec
+///
+/// @param {Number} $x
+/// @param {Number} $y
+///
+/// @output
+/// ```css
+///  -webkit-transform: skew(<x>deg, <y>deg);
+///     -moz-transform: skew(<x>deg, <y>deg);
+///      -ms-transform: skew(<x>deg, <y>deg);
+///       -o-transform: skew(<x>deg, <y>deg);
+///          transform: skew(<x>deg, <y>deg);
+/// ```
+///
+/// @example
+///  .selector {
+///    @include z-skew(10, 15);
+///  }
+///
+@mixin z-skew ($x, $y) {
+    @include z-transform(skew(#{$x}deg, #{$y}deg));
+}
+
+///
+/// Generates cross-browser-compatible `transform-origin` for a given element.
+///
+/// @link https://www.w3schools.com/cssref/css3_pr_transform-origin.asp spec
+///
+/// @param {List} $values
+///
+/// @output
+/// ```css
+///  -webkit-transform-origin: <values>;
+///     -moz-transform-origin: <values>;
+///      -ms-transform-origin: <values>;
+///       -o-transform-origin: <values>;
+///          transform-origin: <values>;
+/// ```
+///
+/// @example
+///  .selector {
+///    @include z-transform-origin(left center);
+///  }
+///
+@mixin z-transform-origin ($origin) {
+    -webkit-transform-origin: $origin;
+    -moz-transform-origin: $origin;
+    -ms-transform-origin: $origin;
+    -o-transform-origin: $origin;
+    transform-origin: $origin;
+}

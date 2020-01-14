@@ -1,0 +1,134 @@
+///
+/// Generates cross-browser-compatible `transition` output for a given element.
+///
+/// @link https://www.w3schools.com/cssref/css3_pr_transition.asp spec
+///
+/// @param {Arglist} $values
+///
+/// @output
+/// ```css
+///   -webkit-transition: <values>;
+///      -moz-transition: <values>;
+///        -o-transition: <values>;
+///           transition: <values>;
+/// ```
+///
+/// @example
+///   .selector {
+///     @include z-transition(background 0.3s ease-in);
+///   }
+///
+@mixin z-transition($transition...) {
+    -moz-transition: $transition;
+    -o-transition: $transition;
+    -webkit-transition: $transition;
+    transition: $transition;
+}
+
+///
+/// Generates cross-browser-compatible `transition-property` output for a given element.
+///
+/// @link https://www.w3schools.com/cssref/css3_pr_transition-property.asp spec
+///
+/// @param {Arglist} $values
+///
+/// @output
+/// ```css
+///   -webkit-transition-property: <values>;
+///      -moz-transition-property: <values>;
+///        -o-transition-property: <values>;
+///           transition-property: <values>;
+/// ```
+///
+/// @example
+///   .selector {
+///     @include z-transition-property(width);
+///   }
+///
+@mixin z-transition-property($values...) {
+    -webkit-transition-property: $values;
+    -moz-transition-property: $values;
+    -o-transition-property: $values;
+    transition-property: $values;
+}
+
+///
+/// Generates cross-browser-compatible `transition-duration` output for a given element.
+///
+/// @link https://www.w3schools.com/cssref/css3_pr_transition-duration.asp spec
+///
+/// @param {Arglist} $values
+///
+/// @output
+/// ```css
+///   -webkit-transition-duration: <values>;
+///      -moz-transition-duration: <values>;
+///        -o-transition-duration: <values>;
+///           transition-duration: <values>;
+/// ```
+///
+/// @example
+///   .selector {
+///     @include z-transition-duration(5s);
+///   }
+///
+@mixin z-transition-duration($values...) {
+    -webkit-transition-duration: $values;
+    -moz-transition-duration: $values;
+    -o-transition-duration: $values;
+    transition-duration: $values;
+}
+
+///
+/// Generates cross-browser-compatible `transition-timing-function` output for a given element.
+///
+/// @link https://www.w3schools.com/cssref/css3_pr_transition-timing-function.asp spec
+///
+/// @param {Arglist} $values
+///
+/// @output
+/// ```css
+///   -webkit-transition-timing-function: <values>;
+///      -moz-transition-timing-function: <values>;
+///        -o-transition-timing-function: <values>;
+///           transition-timing-function: <values>;
+/// ```
+///
+/// @example
+///   .selector {
+///     @include z-transition-timing-function(linear);
+///   }
+///
+@mixin z-transition-timing-function($values...) {
+    -webkit-transition-timing-function: $values;
+    -moz-transition-timing-function: $values;
+    -o-transition-timing-function: $values;
+    transition-timing-function: $values;
+}
+
+///
+/// Generates cross-browser-compatible `transition-delay` output for a given element.
+///
+/// @link https://www.w3schools.com/cssref/css3_pr_transition-delay.asp spec
+///
+/// @param {Arglist} $values
+///
+/// @output
+/// ```css
+///   -webkit-transition-delay: <values>;
+///      -moz-transition-delay: <values>;
+///        -o-transition-delay: <values>;
+///           transition-delay: <values>;
+/// ```
+///
+/// @example
+///   .selector {
+///     @include z-transition-delay(2s);
+///   }
+///
+@mixin z-transition-delay($values...) {
+    -webkit-transition-delay: $values;
+    -moz-transition-delay: $values;
+    -o-transition-delay: $values;
+    transition-delay: $values;
+}

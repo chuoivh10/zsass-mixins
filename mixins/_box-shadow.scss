@@ -1,0 +1,22 @@
+///
+/// Generates cross-browser-compatible `box-shadow` for a given element.
+///
+/// @link https://www.w3schools.com/cssref/css3_pr_box-shadow.asp spec
+///
+/// @param {List} $values
+///
+/// @output
+/// ```css
+///   -webkit-box-shadow: <values>;
+///           box-shadow: <values>;
+/// ```
+///
+/// @example
+///   .selector {
+///     @include x-box-shadow(5px 5px 10px 5px #aaa);
+///   }
+///
+@mixin z-box-shadow ($values...) {
+	-webkit-box-shadow: $values;
+	        box-shadow: $values;
+}

@@ -1,25 +1,27 @@
 {
-  "name": "zsass-mixins",
-  "title": "zsass-mixins",
-  "description": "Some sass mixins to use in your project",
-  "version": "0.10.0",
-  "homepage": "https://github.com/chuoivh10/zsass-mixins",
-  "author": {
-    "name": "Mr.Hiep",
-    "url": "https://htmlgun.com"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/chuoivh10/zsass-mixins.git"
-  },
-  "bugs": {
-    "url": "https://github.com/chuoivh10/zsass-mixins/issues"
-  },
-  "license": "MIT",
-  "devDependencies": {
-    "grunt": "^0.4.5",
-    "grunt-contrib-concat": "0.5.1",
-    "grunt-sass": "^1.0.0"
-  },
-  "keywords": ["mixins", "sass"]
+	"name": "zsass-mixins",
+	"title": "zsass-mixins",
+	"description": "Some sass mixins to use in your project",
+	"version": "0.10.0",
+	"homepage": "https://github.com/chuoivh10/zsass-mixins",
+	"author": {
+		"name": "Mr.Hiep",
+		"url": "https://htmlgun.com"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git://github.com/chuoivh10/zsass-mixins.git"
+	},
+	"bugs": {
+		"url": "https://github.com/chuoivh10/zsass-mixins/issues"
+	},
+	"license": "MIT",
+	"devDependencies": {
+		"grunt": "^1.0.4",
+		"grunt-sassdoc": "^2.0.3"
+	},
+	"keywords": [
+		"mixins",
+		"sass"
+	]
 }

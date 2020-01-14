@@ -1,0 +1,52 @@
+///
+/// Returns a string replace by keywork from input string.
+///
+/// @param {String} $string
+/// @param {String} $search
+/// @param {String} $replace [""] - optional
+///
+/// @returns {String}
+///
+@function str-replace($string, $search, $replace: "") {
+	$index: str-index($string, $search);
+
+	@if $index {
+		@return str-slice($string, 1, $index - 1) + $replace + str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
+	}
+
+	@return $string;
+}
+
+///
+/// Generates `selection` content for a given element.
+///
+/// @link https://www.w3schools.com/cssref/sel_selection.asp spec
+///
+/// @output
+/// ```css
+///    &::-moz-selection {
+///        <content>
+///    }
+///    
+///    &::selection {
+///        <content>
+///    }
+/// ```
+///
+/// @example
+///   .selector {
+///     @include x-selection {
+///         color: red;
+///         background: yellow;
+///     }
+///   }
+///
+@mixin selection {
+    ::-moz-selection {
+        @content;
+    }
+
+    ::selection {
+        @content;
+    }
+}

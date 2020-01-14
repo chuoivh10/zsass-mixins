@@ -1,0 +1,22 @@
+///
+/// Generates cross-browser-compatible `border-radius` for a given element.
+///
+/// @link https://www.w3schools.com/cssref/css3_pr_border-radius.asp spec
+///
+/// @param {List} $values
+///
+/// @output
+/// ```css
+///   -webkit-border-radius: <values>;
+///           border-radius: <values>;
+/// ```
+///
+/// @example
+///   .selector {
+///     @include z-border-radius(20px 10px);
+///   }
+///
+@mixin z-border-radius ($values) {
+	-webkit-border-radius: $values;
+	        border-radius: $values;
+}

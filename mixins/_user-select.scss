@@ -1,0 +1,26 @@
+///
+/// Disables selection of content of a given element.
+///
+/// @link https://www.w3schools.com/cssref/css3_pr_user-select.asp spec
+///
+/// @param {none|auto} $value [none] - optional
+///
+/// @output
+/// ```css
+///   -webkit-user-select: <value>;
+///      -moz-user-select: <value>;
+///       -ms-user-select: <value>;
+///           user-select: <value>;
+/// ```
+///
+/// @example
+///   .selector {
+///     @include z-user-select;
+///   }
+///
+@mixin z-user-select ($value: none) {
+	-webkit-user-select: $value; /* Safari 3.1+ */
+	-moz-user-select: $value; /* Firefox 2+ */
+	-ms-user-select: $value; /* IE 10+ */
+	user-select: $value; /* Standard syntax */
+}

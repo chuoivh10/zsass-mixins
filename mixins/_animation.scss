@@ -1,0 +1,54 @@
+///
+/// Generates keyframe animations.
+///
+/// @param {String} $keyframe-name
+///
+/// @example
+///    @include x-keyframes(jump) {
+///      from { top: 0; }
+///      to { top: -10px; }
+///    }
+///
+@mixin z-keyframes($keyframe-name) {
+    @-webkit-keyframes #{$keyframe-name} {
+        @content;
+    }
+    @-moz-keyframes #{$keyframe-name} {
+        @content;
+    }  
+    @-ms-keyframes #{$keyframe-name} {
+        @content;
+    }
+    @-o-keyframes #{$keyframe-name} {
+        @content;
+    }  
+    @keyframes #{$keyframe-name} {
+        @content;
+    }
+}
+
+///
+/// Add animation to element.
+///
+/// @link https://www.w3schools.com/cssref/css3_pr_animation.asp spec
+///
+/// @param {List} $values
+///
+/// @output
+/// ```css
+///     -webkit-animation: <values>;
+///             animation: <values>;
+/// ```
+///
+/// @example
+///   .selector {
+///     @include x-animation(jump 1s ease-out);
+///   }
+///
+@mixin z-animation($str) {
+  -webkit-animation: #{$str};
+  -moz-animation: #{$str};
+  -ms-animation: #{$str};
+  -o-animation: #{$str};
+  animation: #{$str};      
+}

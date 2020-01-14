@@ -1,0 +1,26 @@
+///
+/// Generates `opacity` output for a given element and adds a filter for old IE.
+///
+/// @link https://www.w3schools.com/cssref/css3_pr_opacity.asp spec
+///
+/// @param {Number} $value [0]
+///
+/// @output
+/// ```css
+///   opacity: <value>;
+///    filter: alpha(opacity=<value * 100>);
+/// ```
+///
+/// @example
+///   .selector {
+///     @include z-opacity(0.3);
+///   }
+///
+
+@mixin z-opacity ($value: 0) {
+	$value-percentage: $value * 100;
+
+	opacity: $value;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=#{$value-percentage})";
+	filter: alpha(opacity=#{$value-percentage});
+}

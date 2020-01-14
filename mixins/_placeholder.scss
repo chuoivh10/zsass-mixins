@@ -1,0 +1,41 @@
+///
+/// Generates `placeholder` content for a given element.
+///
+/// @link https://www.w3schools.com/cssref/sel_placeholder.asp spec
+/// @link http://css-tricks.com/snippets/css/style-placeholder-text css-tricks
+///
+/// @output
+/// ```css
+///    &::-webkit-input-placeholder {
+///        <content>
+///    }
+///    &::-moz-placeholder {
+///        <content>
+///    }
+///    &:-moz-placeholder {
+///        <content>
+///    }
+///    &:-ms-input-placeholder {
+///        <content>
+///    }
+///    &.placeholder {
+///        <content>
+///    }
+/// ```
+///
+/// @example
+///   .selector {
+///     @include x-placeholder {
+///         color: #bada55;
+///         font-weight: bold;
+///     }
+///   }
+///
+
+@mixin input-placeholder {
+    &.placeholder { @content; }
+    &:-moz-placeholder { @content; }
+    &::-moz-placeholder { @content; }
+    &:-ms-input-placeholder { @content; }
+    &::-webkit-input-placeholder { @content; }
+}
