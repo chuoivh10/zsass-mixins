@@ -21,7 +21,7 @@
 		"grunt-sassdoc": "^2.0.3"
 	},
 	"keywords": [
-		"mixins",
+		"sass-mixins",
 		"sass"
 	]
 }
