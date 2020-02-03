@@ -2,12 +2,9 @@
 	"name": "zsass-mixins",
 	"title": "zsass-mixins",
 	"description": "Some sass mixins to use in your project",
-	"version": "0.10.0",
+	"version": "0.11.0",
 	"homepage": "https://github.com/chuoivh10/zsass-mixins",
-	"author": {
-		"name": "Mr.Hiep",
-		"url": "https://htmlgun.com"
-	},
+	"author": "Mr.Hiep (https://htmlgun.com)",
 	"repository": {
 		"type": "git",
 		"url": "git://github.com/chuoivh10/zsass-mixins.git"
@@ -18,10 +15,20 @@
 	"license": "MIT",
 	"devDependencies": {
 		"grunt": "^1.0.4",
-		"grunt-sassdoc": "^2.0.3"
+		"grunt-contrib-concat": "^1.0.1",
+		"grunt-sass": "^3.1.0",
+		"grunt-sassdoc": "^2.0.3",
+		"node-sass": "^4.13.1"
 	},
 	"keywords": [
 		"sass-mixins",
 		"sass"
-	]
+	],
+	"main": "gruntfile.js",
+	"directories": {
+		"doc": "doc"
+	},
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	}
 }

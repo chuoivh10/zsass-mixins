@@ -1,17 +1,1067 @@
-/*! zsass-mixins - v0.10.0 */
+/*! zsass-mixins - v0.10.0 - 2020-02-03 */
+///
+/// Generates keyframe animations.
+///
+/// @param {String} $keyframe-name
+///
+/// @example
+///    @include x-keyframes(jump) {
+///      from { top: 0; }
+///      to { top: -10px; }
+///    }
+///
+@mixin z-keyframes($keyframe-name) {
+    @-webkit-keyframes #{$keyframe-name} {
+        @content;
+    }
+    @-moz-keyframes #{$keyframe-name} {
+        @content;
+    }  
+    @-ms-keyframes #{$keyframe-name} {
+        @content;
+    }
+    @-o-keyframes #{$keyframe-name} {
+        @content;
+    }  
+    @keyframes #{$keyframe-name} {
+        @content;
+    }
+}
 
-@import "./mixins/util";
-@import "./mixins/animation";
-@import "./mixins/border-radius";
-@import "./mixins/box-shadow";
-@import "./mixins/calc";
-@import "./mixins/flexbox";
-@import "./mixins/font";
-@import "./mixins/linear-gradient";
-@import "./mixins/multiple-colored-gradient";
-@import "./mixins/opacity";
-@import "./mixins/placeholder";
-@import "./mixins/transform";
-@import "./mixins/transition";
-@import "./mixins/user-select";
-@import "./mixins/util";
+///
+/// Add animation to element.
+///
+/// @link https://www.w3schools.com/cssref/css3_pr_animation.asp spec
+///
+/// @param {List} $values
+///
+/// @output
+/// ```css
+///     -webkit-animation: <values>;
+///             animation: <values>;
+/// ```
+///
+/// @example
+///   .selector {
+///     @include x-animation(jump 1s ease-out);
+///   }
+///
+@mixin z-animation($str) {
+  -webkit-animation: #{$str};
+  -moz-animation: #{$str};
+  -ms-animation: #{$str};
+  -o-animation: #{$str};
+  animation: #{$str};      
+}
+///
+/// Generates cross-browser-compatible `border-radius` for a given element.
+///
+/// @link https://www.w3schools.com/cssref/css3_pr_border-radius.asp spec
+///
+/// @param {List} $values
+///
+/// @output
+/// ```css
+///   -webkit-border-radius: <values>;
+///           border-radius: <values>;
+/// ```
+///
+/// @example
+///   .selector {
+///     @include z-border-radius(20px 10px);
+///   }
+///
+@mixin z-border-radius ($values) {
+	-webkit-border-radius: $values;
+	        border-radius: $values;
+}
+///
+/// Generates cross-browser-compatible `box-shadow` for a given element.
+///
+/// @link https://www.w3schools.com/cssref/css3_pr_box-shadow.asp spec
+///
+/// @param {List} $values
+///
+/// @output
+/// ```css
+///   -webkit-box-shadow: <values>;
+///           box-shadow: <values>;
+/// ```
+///
+/// @example
+///   .selector {
+///     @include x-box-shadow(5px 5px 10px 5px #aaa);
+///   }
+///
+@mixin z-box-shadow ($values...) {
+	-webkit-box-shadow: $values;
+	        box-shadow: $values;
+}
+///
+/// Generates `calc` function which allows mathematical expressions for a given property.
+///
+/// @link https://www.w3schools.com/cssref/func_calc.asp spec
+///
+/// @param {String} $property
+/// @param {String} $expression
+///
+/// @output
+/// ```css
+///   <property>: -webkit-calc(<expression>);
+///   <property>: calc(<expression>);
+/// ```
+///
+/// @example
+///  .selector {
+///    @include z-calc(width, "600px - 2em");
+///  }
+///
+@mixin z-calc ($property, $expression) {
+	#{$property}: -webkit-calc(#{$expression});
+	#{$property}: calc(#{$expression});
+}
+///
+/// Generates flexbox properties for a given element.
+///
+/// @link https://www.w3schools.com/css/css3_flexbox.asp spec
+/// @link http://css-tricks.com/snippets/css/a-guide-to-flexbox css-tricks
+///
+/// @output
+/// ```css
+///   display: -webkit-box;
+///   display: -moz-box;
+///   display: -ms-flexbox;
+///   display: -webkit-flex;
+///   display: flex;
+/// ```
+///
+/// @example
+///   .selector {
+///     @include z-display-flex;
+///   }
+///
+@mixin z-display-flex {
+	display: -webkit-box; // Chrome 20-, iOS 6-, Safari 3.1  -6
+	display: -moz-box; // FF 19-
+	display: -webkit-flex; // Chrome 21 - 28
+	display: -ms-flexbox; // IE 10
+	display: flex; // FF 20+, Chrome 29+, Opera 12.1, 17+
+}
+
+///
+/// Add flex values to element.
+///
+/// @param {Arglist} $values
+///
+/// @output
+/// ```css
+///   -webkit-box-flex: <values>;
+///      -moz-box-flex: <values>;
+///       -webkit-flex: <values>;
+///           -ms-flex: <values>;
+///               flex: <values>;
+/// ```
+///
+/// @example
+///   .selector {
+///     @include z-flex(1 1 auto);
+///   }
+///
+@mixin z-flex($values...) {
+	-webkit-box-flex: $values; // Chrome 20-, iOS 6-, Safari 3.1 - 6
+	-moz-box-flex: $values; // FF 19-
+	-webkit-flex: $values; // Chrome 21 - 28
+	-ms-flex: $values; // IE 10
+	flex: $values; // FF 20+, Chrome 29+, Opera 12.1, 17+
+}
+
+///
+/// Add flex order to element.
+///
+/// @param {Number} $value
+///
+/// @output
+/// ```css
+///   -webkit-box-ordinal-group: <value>;
+///      -moz-box-ordinal-group: <value>;
+///              -ms-flex-order: <value>;
+///               -webkit-order: <value>;
+///                       order: <value>;
+/// ```
+///
+/// @example
+///   .selector {
+///     @include z-order(1);
+///   }
+///
+@mixin z-order($value) {
+	-webkit-box-ordinal-group: $value; // Chrome 20-, iOS 6-, Safari 3.1 - 6
+	-moz-box-ordinal-group: $value; // FF 19-
+	-ms-flex-order: $value; // IE 10
+	-webkit-order: $value; // Chrome 21 - 28
+	order: $value; // FF 20+, Chrome 29+, Opera 12.1, 17+
+}
+
+///
+/// Add flex wrap to element.
+///
+/// @param {String} $value
+///
+/// @output
+/// ```css
+///    -webkit-flex-wrap: <value>;
+///        -ms-flex-wrap: <value>;
+///            flex-wrap: <value>;
+/// ```
+///
+/// @example
+///   .selector {
+///     @include z-flex-wrap(wrap);
+///   }
+///
+@mixin z-flex-wrap($value) {
+	// IE 10
+	@if $value == nowrap {
+		-ms-flex-wrap: none;
+	} @else {
+		-ms-flex-wrap: $value;
+	}
+	-webkit-flex-wrap: $value; // Chrome 20-, iOS 6-, Safari 3.1 - 6
+	flex-wrap: $value; // FF 28+, Chrome 21+, Opera 12.1, 17+, IE 11
+}
+
+///
+/// Add flex align-content to element.
+///
+/// @param {String} $value
+///
+/// @output
+/// ```css
+///   -webkit-align-content: <value>;
+///      -moz-align-content: <value>;
+///      -ms-flex-line-pack: <value>;
+///           align-content: <value>;
+/// ```
+/// @example
+///   .selector {
+///     @include z-align-content(center);
+///   }
+///
+@mixin z-align-content($value) {
+	// IE 10
+	@if $value == flex-start {
+		-ms-flex-line-pack: start;
+	} @else if $value == flex-end {
+		-ms-flex-line-pack: end;
+	} @else if $value == space-between {
+		-ms-flex-line-pack: justify;
+	} @else if $value == space-around {
+		-ms-flex-line-pack: distribute;
+	} @else {
+		-ms-flex-line-pack: $value;
+	}
+	-webkit-align-content: $value; // Chrome 20-, iOS 6-, Safari 3.1 - 6
+	-moz-align-content: $value; // FF 19-
+	align-content: $value; // FF 20+, Chrome 21+, Opera 12.1, 17+, IE 11
+}
+
+///
+/// Add flex direction to element.
+///
+/// @param {String} $value
+///
+/// @output
+/// ```css
+///    -webkit-box-direction: <value>;
+///       -moz-box-direction: <value>;
+///       -webkit-box-orient: <value>;
+///          -moz-box-orient: <value>;
+///   -webkit-flex-direction: <value>;
+///      -moz-flex-direction: <value>;
+///       -ms-flex-direction: <value>;
+///           flex-direction: <value>;
+/// ```
+///
+/// @example
+///   .selector {
+///     @include z-flex-direction(row-reverse);
+///   }
+///
+@mixin z-flex-direction($value) {
+	@if $value == row {
+		-webkit-box-direction: normal;
+		-moz-box-direction: normal;
+		-webkit-box-orient: horizontal;
+		-moz-box-orient: horizontal;
+	}
+	@elseif $value == row-reverse {
+		-webkit-box-direction: reverse;
+		-moz-box-direction: reverse;
+		-webkit-box-orient: horizontal;
+		-moz-box-orient: horizontal;
+	}
+	@elseif $value == column {
+		-webkit-box-direction: normal;
+		-moz-box-direction: normal;
+		-webkit-box-orient: vertical;
+		-moz-box-orient: vertical;
+	}
+	@elseif $value == column-reverse {
+		-webkit-box-direction: reverse;
+		-moz-box-direction: reverse;
+		-webkit-box-orient: vertical;
+		-moz-box-orient: vertical;
+	}
+
+	-webkit-flex-direction: $value;
+	-moz-flex-direction: $value;
+	-ms-flex-direction: $value;
+	flex-direction: $value;
+}
+///
+/// Returns a number without unit.
+///
+/// Borrowed from https://github.com/zurb/foundation/blob/master/scss/foundation/_functions.scss
+///
+/// @param {Number} $value
+///
+/// @returns {Number} - 30px -> 30
+///
+@function strip-unit($value) {
+	@return $value / ($value * 0 + 1);
+}
+
+
+///
+/// This mixin enables you to use the CSS3 value `rem`, which lets you define
+/// property sizes based on the root element's font-size.
+///
+/// Outputs properties that use rem with a px fallback.
+/// It also takes px values and converts them to rem.
+///
+/// @link http://caniuse.com/rem caniuse
+/// @link http://www.w3.org/TR/css3-values/#relative0 spec
+///
+/// @param {String} $property
+/// @param {List} $values
+/// @param {Number} $default-font-size [16px] - optional
+///
+/// @require {Function} strip-unit
+///
+/// @output
+/// ```css
+///   <property>: <parsed value>px;
+///   <property>: <parsed value>rem;
+/// ```
+///
+/// @example
+///   .selector {
+///     @include z-rem(font-size, 1.3);
+///     @include z-rem(padding, 20px);
+///   }
+///
+@mixin z-rem ($property, $values, $main-font-size: 16px) {
+
+   // Empty list for all values in px
+   $px-values: ();
+   $rem-values: ();
+
+   // Iterate over entries
+   @each $value in $values {
+
+	   // If the value is zero or of a type that doesn’t need conversion, return the value untouched
+	   @if index(auto inherit initial none 0, $value) or type-of($value) != "number" {
+		   $px-values: append($px-values, $value);
+		   $rem-values: append($rem-values, $value);
+
+	   // Otherwise convert it properly
+	   } @else {
+		   $unit: unit($value);
+
+		   @if $unit == 'px' {
+			   $px-values: append($px-values, #{strip-unit($value)} * 1px );
+			   $rem-values: append($rem-values, (strip-unit($value) / strip-unit($main-font-size) * 1rem));
+		   } @else {
+			   $px-values: append($px-values, ($value * $main-font-size) );
+			   $rem-values: append($rem-values, #{$value} * 1rem);
+		   }
+
+	   }
+   }
+
+   // Return the property and its list of converted values
+   #{$property}: #{$px-values};
+   #{$property}: #{$rem-values};
+}
+
+///
+/// General font-face from webfont library
+///
+/// @link https://www.w3schools.com/cssref/css3_pr_font-face_rule.asp spec
+///
+/// @param {String} $name
+/// @param {String} $path
+/// @param {String} $weight [null] - optional
+/// @param {String} $style [null] - optional
+/// @param {String} $weight [null] - optional
+/// @param {List}   $exts  [eot woff2 woff ttf svg] - optional
+///
+/// @require {Function} strip-unit
+///
+/// @output
+/// ```css
+///   font-family: quote(<name>);
+///   font-style: <style>;
+///   font-weight: <weight>;
+///   src: <parsed src>;
+/// ```
+///
+/// @example
+///   .selector {
+///     @include z-font-face("Roboto", "./font/");
+///   }
+///
+@mixin z-font-face($name, $path, $weight: null, $style: null, $exts: eot woff2 woff ttf svg) {
+	$src: null;
+
+	$extmods: (
+		eot: "?",
+		svg: "#" + str-replace($name, " ", "_")
+	);
+
+	$formats: (
+		otf: "opentype",
+		ttf: "truetype"
+	);
+
+	@each $ext in $exts {
+		$extmod: if(map-has-key($extmods, $ext), $ext + map-get($extmods, $ext), $ext);
+		$format: if(map-has-key($formats, $ext), map-get($formats, $ext), $ext);
+		$src: append($src, url(quote($path + "." + $extmod)) format(quote($format)), comma);
+	}
+
+	@font-face {
+		font-family: quote($name);
+		font-style: $style;
+		font-weight: $weight;
+		src: $src;
+	}
+}
+
+///
+/// Helper for old syntax (for Angles) in linear-gradients.
+///
+/// @param {Number|String} $deg
+///
+/// @return {Number|String} - Return the corrected angle or position for a css gradient
+///
+
+@function angle ($deg) {
+	@if type-of($deg) == 'number' {
+		@return mod(abs($deg - 450), 360deg);
+	} @else {
+		$position: to + " ";
+		@each $pos in $deg {
+			$position: $position + opposite-position($pos) + " ";
+		}
+
+		@return $position;
+	}
+}
+
+///
+/// Get the old direction keyword syntax for gradients, for backward compability.
+///
+/// @param {String} $direction
+///
+/// @return {String}
+///
+@function helper-gradient-angle ($direction) {
+
+	$old-direction: $direction;
+	$veryold-direction: $direction;
+
+	// New Syntax has to be evaluated to old one
+	@if $direction == 'to bottom' {
+		$old-direction: 'top';
+	} @else if $direction == 'to right' {
+		$old-direction: 'left';
+	} @else if $direction == 'to top' {
+		$old-direction: 'bottom';
+	} @else if $direction == 'to left' {
+		$old-direction: 'right';
+	} @else {
+		$old-direction: angle($direction);
+	}
+
+	// And also for very old syntax
+	@if $direction == 'to bottom' {
+		$veryold-direction: 'left top, left bottom';
+	} @else if $direction == 'to right' {
+		$veryold-direction: 'top left, bottom right';
+	} @else if $direction == 'to top' {
+		$veryold-direction: 'left bottom, left top';
+	} @else if $direction == 'to left' {
+		$veryold-direction: 'top right, bottom left';
+	} @else {
+		$veryold-direction: angle($direction);
+	}
+
+
+	@return $old-direction, $veryold-direction;
+}
+
+///
+/// Generates a linear gradient for a given element with a fallback color.
+///
+/// Note: By default this linear-gradient-mixin encourages people to use the
+/// latest CSS-syntax for gradients.
+///
+/// @link https://www.w3schools.com/cssref/func_linear-gradient.asp spec
+///
+/// @require helper-gradient-angle
+///
+/// @param {String | Angle} $direction [to bottom] - Either an angle value or any of `to bottom`, `to right`, `to top` or `to left`
+/// @param {Color} $fallback [#ccc]
+/// @param {Color} $from [#ccc]
+/// @param {Color} $to [#aaa]
+///
+/// @output
+/// ```css
+///   background-color: <fallback>;
+///   background-image: -webkit-gradient(linear, <direction - old converted>, from(<from>), to(<to>));
+///   background-image: -webkit-linear-gradient(<direction - converted>, <from>, <to>);
+///   background-image:         linear-gradient(<direction>, <from>, <to>);
+/// ```
+///
+/// @example
+///   .selector {
+///     @include x-linear-gradient('to bottom', #ccc, #ddd, #bbb);
+///   }
+///
+@mixin z-linear-gradient ($direction: 'to bottom', $fallback: #ccc, $from: #ccc, $to: #aaa) {
+
+	$directions: helper-gradient-angle($direction);
+
+	// Provide a fallback-color
+	background-color: $fallback;
+
+	// Cross-browser linear-gradients
+	background-image: -webkit-gradient(linear, unquote(nth($directions, 2)), from($from), to($to)); // Android 2.1-3.0
+	background-image: -webkit-linear-gradient(unquote(nth($directions, 1)), $from, $to);
+	background-image:         linear-gradient(unquote($direction), $from, $to);
+}
+///
+/// This mixin creates (endless) multiple color stops in gradients just with one
+/// call for the mixin.
+///
+/// @link https://www.w3schools.com/cssref/func_linear-gradient.asp spec
+///
+/// @param {Arglist} $args
+///
+/// @output
+/// ```css
+///   background-image: -webkit-linear-gradient(top, <stops[1]>, <stops[2]>, ..., <stops[n]>);
+///   background-image:         linear-gradient(to bottom, <stops[1]>, <stops[2]>, ..., <stops[n]>);
+/// ```
+///
+/// @example
+///   .selector {
+///     @include z-multiple-colored-gradient(
+///         'top',
+///         #f22 0%,
+///         #f2f 15%,
+///         #22f 30%,
+///         #2ff 45%,
+///         #2f2 60%,
+///         #2f2 75%,
+///         #ff2 90%,
+///         #f22 100%
+///     );
+///   }
+///
+@mixin z-multiple-colored-gradient ($args...) {
+
+	$gradient: ();
+	$pos: nth($args, 1);
+	$pos_newsyntax: ();
+
+	@if not is-valid-keyword-direction($pos) {
+		$pos: 'top';
+	}
+
+	// New Syntax
+	@if $pos == 'top' {
+		$pos_newsyntax: 'to bottom';
+	} @else if $pos == 'right' {
+		$pos_newsyntax: 'to left';
+	} @else if $pos == 'bottom' {
+		$pos_newsyntax: 'to top';
+	} @else if $pos == 'left' {
+		$pos_newsyntax: 'to right';
+	}
+
+	@each $g in $args {
+		@if not is-valid-keyword-direction($g) {
+			$gradient: append($gradient, $g, comma);
+		}
+	}
+
+	background-image: -webkit-linear-gradient(unquote($pos), $gradient);
+	background-image:         linear-gradient(unquote($pos_newsyntax), $gradient);
+}
+
+
+///
+/// Returns whether a value is a valid keyword direction.
+///
+/// @param {String} $value
+///
+/// @returns {Bool}
+///
+@function is-valid-keyword-direction($value) {
+  @return not not index(
+    'top' 'right' 'bottom' 'left'
+    'to top' 'to right' 'to bottom' 'to left'
+    'to top right' 'to right top'
+    'to bottom right' 'to right bottom'
+    'to top left' 'to left top'
+    'to bottom left' 'to left bottom', $value);
+}
+///
+/// Generates `opacity` output for a given element and adds a filter for old IE.
+///
+/// @link https://www.w3schools.com/cssref/css3_pr_opacity.asp spec
+///
+/// @param {Number} $value [0]
+///
+/// @output
+/// ```css
+///   opacity: <value>;
+///    filter: alpha(opacity=<value * 100>);
+/// ```
+///
+/// @example
+///   .selector {
+///     @include z-opacity(0.3);
+///   }
+///
+
+@mixin z-opacity ($value: 0) {
+	$value-percentage: $value * 100;
+
+	opacity: $value;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=#{$value-percentage})";
+	filter: alpha(opacity=#{$value-percentage});
+}
+///
+/// Generates `placeholder` content for a given element.
+///
+/// @link https://www.w3schools.com/cssref/sel_placeholder.asp spec
+/// @link http://css-tricks.com/snippets/css/style-placeholder-text css-tricks
+///
+/// @output
+/// ```css
+///    &::-webkit-input-placeholder {
+///        <content>
+///    }
+///    &::-moz-placeholder {
+///        <content>
+///    }
+///    &:-moz-placeholder {
+///        <content>
+///    }
+///    &:-ms-input-placeholder {
+///        <content>
+///    }
+///    &.placeholder {
+///        <content>
+///    }
+/// ```
+///
+/// @example
+///   .selector {
+///     @include x-placeholder {
+///         color: #bada55;
+///         font-weight: bold;
+///     }
+///   }
+///
+
+@mixin z-input-placeholder {
+    &.placeholder { @content; }
+    &:-moz-placeholder { @content; }
+    &::-moz-placeholder { @content; }
+    &:-ms-input-placeholder { @content; }
+    &::-webkit-input-placeholder { @content; }
+}
+///
+/// Generates cross-browser-compatible `transform` for a given element.
+///
+/// @link https://www.w3schools.com/cssref/css3_pr_transform.asp spec
+///
+/// @param {String} $values
+///
+/// @output
+/// ```css
+///  -webkit-transform: <values>;
+///     -moz-transform: <values>;
+///      -ms-transform: <values>;
+///       -o-transform: <values>;
+///          transform: <values>;
+/// ```
+///
+/// @example
+///  .selector {
+///    @include z-transform(rotate(1deg));
+///  }
+///
+@mixin z-transform($transforms) {
+    -moz-transform: $transforms;
+    -o-transform: $transforms;
+    -ms-transform: $transforms;
+    -webkit-transform: $transforms;
+    transform: $transforms;
+}
+
+///
+/// Generates cross-browser-compatible `transform:rotate` for a given element.
+///
+/// @link https://www.w3schools.com/cssref/css3_pr_transform.asp spec
+///
+/// @param {Number} $deg
+///
+/// @output
+/// ```css
+///  -webkit-transform: rotate(<values>deg);
+///     -moz-transform: rotate(<values>deg);
+///      -ms-transform: rotate(<values>deg);
+///       -o-transform: rotate(<values>deg);
+///          transform: rotate(<values>deg);
+/// ```
+///
+/// @example
+///  .selector {
+///    @include z-rotate(45);
+///  }
+///
+@mixin z-rotate ($deg) {
+    @include z-transform(rotate(#{$deg}deg));
+}
+
+///
+/// Generates cross-browser-compatible `transform:scale` for a given element.
+///
+/// @link https://www.w3schools.com/cssref/css3_pr_transform.asp spec
+///
+/// @param {Number} $deg
+///
+/// @output
+/// ```css
+///  -webkit-transform: scale(<values>);
+///     -moz-transform: scale(<values>);
+///      -ms-transform: scale(<values>);
+///       -o-transform: scale(<values>);
+///          transform: scale(<values>);
+/// ```
+///
+/// @example
+///  .selector {
+///    @include z-scale(1.1);
+///  }
+///
+@mixin z-scale($scale) {
+    @include z-transform(scale($scale));
+}
+
+///
+/// Generates cross-browser-compatible `transform:translate` for a given element.
+///
+/// @link https://www.w3schools.com/cssref/css3_pr_transform.asp spec
+///
+/// @param {Number} $deg
+///
+/// @output
+/// ```css
+///  -webkit-transform: translate(<values>);
+///     -moz-transform: translate(<values>);
+///      -ms-transform: translate(<values>);
+///       -o-transform: translate(<values>);
+///          transform: translate(<values>);
+/// ```
+///
+/// @example
+///  .selector {
+///    @include z-translate(1.1);
+///  }
+///
+@mixin z-translate ($x, $y) {
+    @include z-transform(translate($x, $y));
+}
+
+///
+/// Generates cross-browser-compatible `transform:skew` for a given element.
+///
+/// @link https://www.w3schools.com/cssref/css3_pr_transform.asp spec
+///
+/// @param {Number} $x
+/// @param {Number} $y
+///
+/// @output
+/// ```css
+///  -webkit-transform: skew(<x>deg, <y>deg);
+///     -moz-transform: skew(<x>deg, <y>deg);
+///      -ms-transform: skew(<x>deg, <y>deg);
+///       -o-transform: skew(<x>deg, <y>deg);
+///          transform: skew(<x>deg, <y>deg);
+/// ```
+///
+/// @example
+///  .selector {
+///    @include z-skew(10, 15);
+///  }
+///
+@mixin z-skew ($x, $y) {
+    @include z-transform(skew(#{$x}deg, #{$y}deg));
+}
+
+///
+/// Generates cross-browser-compatible `transform-origin` for a given element.
+///
+/// @link https://www.w3schools.com/cssref/css3_pr_transform-origin.asp spec
+///
+/// @param {List} $values
+///
+/// @output
+/// ```css
+///  -webkit-transform-origin: <values>;
+///     -moz-transform-origin: <values>;
+///      -ms-transform-origin: <values>;
+///       -o-transform-origin: <values>;
+///          transform-origin: <values>;
+/// ```
+///
+/// @example
+///  .selector {
+///    @include z-transform-origin(left center);
+///  }
+///
+@mixin z-transform-origin ($origin) {
+    -webkit-transform-origin: $origin;
+    -moz-transform-origin: $origin;
+    -ms-transform-origin: $origin;
+    -o-transform-origin: $origin;
+    transform-origin: $origin;
+}
+///
+/// Generates cross-browser-compatible `transition` output for a given element.
+///
+/// @link https://www.w3schools.com/cssref/css3_pr_transition.asp spec
+///
+/// @param {Arglist} $values
+///
+/// @output
+/// ```css
+///   -webkit-transition: <values>;
+///      -moz-transition: <values>;
+///        -o-transition: <values>;
+///           transition: <values>;
+/// ```
+///
+/// @example
+///   .selector {
+///     @include z-transition(background 0.3s ease-in);
+///   }
+///
+@mixin z-transition($transition...) {
+    -moz-transition: $transition;
+    -o-transition: $transition;
+    -webkit-transition: $transition;
+    transition: $transition;
+}
+
+///
+/// Generates cross-browser-compatible `transition-property` output for a given element.
+///
+/// @link https://www.w3schools.com/cssref/css3_pr_transition-property.asp spec
+///
+/// @param {Arglist} $values
+///
+/// @output
+/// ```css
+///   -webkit-transition-property: <values>;
+///      -moz-transition-property: <values>;
+///        -o-transition-property: <values>;
+///           transition-property: <values>;
+/// ```
+///
+/// @example
+///   .selector {
+///     @include z-transition-property(width);
+///   }
+///
+@mixin z-transition-property($values...) {
+    -webkit-transition-property: $values;
+    -moz-transition-property: $values;
+    -o-transition-property: $values;
+    transition-property: $values;
+}
+
+///
+/// Generates cross-browser-compatible `transition-duration` output for a given element.
+///
+/// @link https://www.w3schools.com/cssref/css3_pr_transition-duration.asp spec
+///
+/// @param {Arglist} $values
+///
+/// @output
+/// ```css
+///   -webkit-transition-duration: <values>;
+///      -moz-transition-duration: <values>;
+///        -o-transition-duration: <values>;
+///           transition-duration: <values>;
+/// ```
+///
+/// @example
+///   .selector {
+///     @include z-transition-duration(5s);
+///   }
+///
+@mixin z-transition-duration($values...) {
+    -webkit-transition-duration: $values;
+    -moz-transition-duration: $values;
+    -o-transition-duration: $values;
+    transition-duration: $values;
+}
+
+///
+/// Generates cross-browser-compatible `transition-timing-function` output for a given element.
+///
+/// @link https://www.w3schools.com/cssref/css3_pr_transition-timing-function.asp spec
+///
+/// @param {Arglist} $values
+///
+/// @output
+/// ```css
+///   -webkit-transition-timing-function: <values>;
+///      -moz-transition-timing-function: <values>;
+///        -o-transition-timing-function: <values>;
+///           transition-timing-function: <values>;
+/// ```
+///
+/// @example
+///   .selector {
+///     @include z-transition-timing-function(linear);
+///   }
+///
+@mixin z-transition-timing-function($values...) {
+    -webkit-transition-timing-function: $values;
+    -moz-transition-timing-function: $values;
+    -o-transition-timing-function: $values;
+    transition-timing-function: $values;
+}
+
+///
+/// Generates cross-browser-compatible `transition-delay` output for a given element.
+///
+/// @link https://www.w3schools.com/cssref/css3_pr_transition-delay.asp spec
+///
+/// @param {Arglist} $values
+///
+/// @output
+/// ```css
+///   -webkit-transition-delay: <values>;
+///      -moz-transition-delay: <values>;
+///        -o-transition-delay: <values>;
+///           transition-delay: <values>;
+/// ```
+///
+/// @example
+///   .selector {
+///     @include z-transition-delay(2s);
+///   }
+///
+@mixin z-transition-delay($values...) {
+    -webkit-transition-delay: $values;
+    -moz-transition-delay: $values;
+    -o-transition-delay: $values;
+    transition-delay: $values;
+}
+///
+/// Disables selection of content of a given element.
+///
+/// @link https://www.w3schools.com/cssref/css3_pr_user-select.asp spec
+///
+/// @param {none|auto} $value [none] - optional
+///
+/// @output
+/// ```css
+///   -webkit-user-select: <value>;
+///      -moz-user-select: <value>;
+///       -ms-user-select: <value>;
+///           user-select: <value>;
+/// ```
+///
+/// @example
+///   .selector {
+///     @include z-user-select;
+///   }
+///
+@mixin z-user-select ($value: none) {
+	-webkit-user-select: $value; /* Safari 3.1+ */
+	-moz-user-select: $value; /* Firefox 2+ */
+	-ms-user-select: $value; /* IE 10+ */
+	user-select: $value; /* Standard syntax */
+}
+///
+/// Returns a string replace by keywork from input string.
+///
+/// @param {String} $string
+/// @param {String} $search
+/// @param {String} $replace [""] - optional
+///
+/// @returns {String}
+///
+@function str-replace($string, $search, $replace: "") {
+	$index: str-index($string, $search);
+
+	@if $index {
+		@return str-slice($string, 1, $index - 1) + $replace + str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
+	}
+
+	@return $string;
+}
+
+///
+/// Generates `selection` content for a given element.
+///
+/// @link https://www.w3schools.com/cssref/sel_selection.asp spec
+///
+/// @output
+/// ```css
+///    &::-moz-selection {
+///        <content>
+///    }
+///    
+///    &::selection {
+///        <content>
+///    }
+/// ```
+///
+/// @example
+///   .selector {
+///     @include x-selection {
+///         color: red;
+///         background: yellow;
+///     }
+///   }
+///
+@mixin z-selection {
+    ::-moz-selection {
+        @content;
+    }
+
+    ::selection {
+        @content;
+    }
+}
