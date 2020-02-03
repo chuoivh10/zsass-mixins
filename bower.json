@@ -1,12 +1,12 @@
 {
-	"name": "xsass-mixins",
+	"name": "zsass-mixins",
 	"main": "mixins.scss",
 	"author": "Mr.Hiep",
 	"ignore": [
 		"node_modules",
-		"mixins",
+		".github",
 		".gitignore",
-		"Gruntfile.js",
+		"gruntfile.js",
 		"package.json"
 	]
 }
