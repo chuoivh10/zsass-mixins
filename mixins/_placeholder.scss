@@ -32,7 +32,7 @@
 ///   }
 ///
 
-@mixin input-placeholder {
+@mixin z-input-placeholder {
     &.placeholder { @content; }
     &:-moz-placeholder { @content; }
     &::-moz-placeholder { @content; }
