@@ -1,4 +1,7 @@
 .vs/*
-
+.git
+.npmrc
+.github/**
+package-lock.json
 node_modules
 .sass-cache
