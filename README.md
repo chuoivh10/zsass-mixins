@@ -1,8 +1,8 @@
-# Some zsass mixins for your needs
+# Some sass mixins for your needs
 
 Take what you need!
 
-### This repository has some zass-mixins for you:
+### This repository has some zsass-mixins for you:
 
 * [animation](mixins/_animation.scss)
 * [border-radius](mixins/_border-radius.scss)
@@ -22,6 +22,31 @@ Take what you need!
 
 Documentation on how to use each of these can be found in the /mixins.
 
+### Support social colors
+
+* amazon
+* apple
+* basecamp
+* box
+* dribbble
+* dropbox
+* ebay
+* facebook
+* flickr
+* foursquare
+* github
+* google
+* google_plus
+* instagram
+* linkedin
+* pinterest
+* skype
+* tumblr
+* twitter
+* vimeo
+* yelp
+* youtube
+
 ### General Usage
 
 In general you should include the file `mixins.scss` into your
@@ -29,11 +54,7 @@ project and use the mixins as suggested in the docs for each mixin.
 
 #### Install with Bower
 
-You can install the package using [Bower](http://bower.io/) or [npm](https://www.npmjs.com/). Please run
-
-	$ bower install --save-dev zsass-mixins
-
-    or
+You can install the package using [npm](https://www.npmjs.com/). Please run
 
     $ npm install --save-dev zsass-mixins
 
